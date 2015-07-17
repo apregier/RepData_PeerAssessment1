@@ -32,7 +32,10 @@ Sum up the total steps taken each day:
 ```r
 splits <- group_by(data, interval)
 daily <- summarize(splits, total_steps=sum(steps, na.rm=TRUE))
-hist(daily$total_steps,main="Distribution of total steps taken each day, ignoring missing values", xlab="Total steps", ylab="# of days")
+hist(daily$total_steps,
+     main="Distribution of total steps taken each day, ignoring missing values",
+     xlab="Total steps",
+     ylab="# of days")
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-3-1.png) 
@@ -58,8 +61,12 @@ median(daily$total_steps)
 ```r
 splits <- group_by(data, interval)
 interval <- summarize(splits, average_steps=sum(steps, na.rm=TRUE))
-#interval <- ddply(data, .(interval), function(xx) {c(average_steps=mean(xx[['steps']], na.rm=TRUE))})
-plot(interval$interval, interval$average_steps, type='l',main="Average steps over the course of a day", xlab="Interval", ylab="Average steps")
+plot(interval$interval,
+     interval$average_steps,
+     type='l',
+     main="Average steps over the course of a day",
+     xlab="Interval",
+     ylab="Average steps")
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-4-1.png) 
@@ -103,7 +110,10 @@ imputed_daily <- summarize(splits, total_steps=sum(steps))
 As seen in the histogram below, imputing the missing values in this way does not change the general shape of the distribution, although it does increase the average total daily step count by about 15%.
 
 ```r
-hist(imputed_daily$total_steps, main="Distribution of the total steps taken each day", xlab="Total steps", ylab="# of days")
+hist(imputed_daily$total_steps,
+     main="Distribution of the total steps taken each day",
+     xlab="Total steps",
+     ylab="# of days")
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-9-1.png) 
