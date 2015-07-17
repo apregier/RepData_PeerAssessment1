@@ -26,6 +26,7 @@ library(dplyr)
 ## 
 ##     intersect, setdiff, setequal, union
 ```
+
 Sum up the total steps taken each day:
 
 ```r
@@ -62,7 +63,9 @@ plot(interval$interval, interval$average_steps, type='l',main="Average steps ove
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-4-1.png) 
+
 Interval with the highest average number of steps:
+
 
 ```r
 interval$interval[which.max(interval$average_steps)]
@@ -90,11 +93,13 @@ splits <- group_by(data, interval)
 splits <- mutate(splits, interval_mean=mean(steps, na.rm=TRUE))
 splits$steps[is.na(splits$steps)] <- splits$interval_mean[is.na(splits$steps)]
 ```
+
 Sum up the total steps taken each day including the imputed values
 
 ```r
 imputed_daily <- summarize(splits, total_steps=sum(steps))
 ```
+
 As seen in the histogram below, imputing the missing values in this way does not change the general shape of the distribution, although it does increase the average total daily step count by about 15%.
 
 ```r
@@ -129,11 +134,13 @@ weekday.type <- function(date) {
   return('weekday')
 }
 ```
+
 The weekday.type factor tells whether it was a weekday or a weekend:
 
 ```r
 data$weekday.type <- factor(sapply(data$date, weekday.type))
 ```
+
 Average for intervals across days, divided by weekday and weekend factor:
 
 ```r
@@ -142,6 +149,7 @@ splits <- mutate(splits, interval_mean=mean(steps, na.rm=TRUE))
 splits$steps[is.na(splits$steps)] <- splits$interval_mean[is.na(splits$steps)]
 interval.weekday <- summarize(splits, average_steps=mean(steps))
 ```
+
 There seems to be a spike in step counts on weekdays around mid-morning that doesn't appear on the weekend.  On the weekend, the average step counts seem to be slightly higher throughout the afternoon and evening.
 
 ```r

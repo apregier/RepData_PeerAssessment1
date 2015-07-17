@@ -16,6 +16,7 @@ data$date <- as.Date(data$date)
 ```{r,results="hide"}
 library(dplyr)
 ```
+
 Sum up the total steps taken each day:
 ```{r}
 splits <- group_by(data, interval)
@@ -32,7 +33,9 @@ interval <- summarize(splits, average_steps=sum(steps, na.rm=TRUE))
 #interval <- ddply(data, .(interval), function(xx) {c(average_steps=mean(xx[['steps']], na.rm=TRUE))})
 plot(interval$interval, interval$average_steps, type='l',main="Average steps over the course of a day", xlab="Interval", ylab="Average steps")
 ```
+
 Interval with the highest average number of steps:
+
 ```{r}
 interval$interval[which.max(interval$average_steps)]
 ```
@@ -49,10 +52,12 @@ splits <- group_by(data, interval)
 splits <- mutate(splits, interval_mean=mean(steps, na.rm=TRUE))
 splits$steps[is.na(splits$steps)] <- splits$interval_mean[is.na(splits$steps)]
 ```
+
 Sum up the total steps taken each day including the imputed values
 ```{r}
 imputed_daily <- summarize(splits, total_steps=sum(steps))
 ```
+
 As seen in the histogram below, imputing the missing values in this way does not change the general shape of the distribution, although it does increase the average total daily step count by about 15%.
 ```{r}
 hist(imputed_daily$total_steps, main="Distribution of the total steps taken each day", xlab="Total steps", ylab="# of days")
@@ -69,10 +74,12 @@ weekday.type <- function(date) {
   return('weekday')
 }
 ```
+
 The weekday.type factor tells whether it was a weekday or a weekend:
 ```{r}
 data$weekday.type <- factor(sapply(data$date, weekday.type))
 ```
+
 Average for intervals across days, divided by weekday and weekend factor:
 ```{r}
 splits <- group_by(data, interval, weekday.type)
@@ -80,6 +87,7 @@ splits <- mutate(splits, interval_mean=mean(steps, na.rm=TRUE))
 splits$steps[is.na(splits$steps)] <- splits$interval_mean[is.na(splits$steps)]
 interval.weekday <- summarize(splits, average_steps=mean(steps))
 ```
+
 There seems to be a spike in step counts on weekdays around mid-morning that doesn't appear on the weekend.  On the weekend, the average step counts seem to be slightly higher throughout the afternoon and evening.
 ```{r}
 library(ggplot2)
