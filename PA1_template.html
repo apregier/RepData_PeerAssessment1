@@ -72,16 +72,6 @@ data$date &lt;- as.Date(data$date)</code></pre>
 <div id="what-is-mean-total-number-of-steps-taken-per-day" class="section level2">
 <h2>What is mean total number of steps taken per day?</h2>
 <pre class="r"><code>library(dplyr)</code></pre>
-<pre><code>## 
-## Attaching package: 'dplyr'
-## 
-## The following object is masked from 'package:stats':
-## 
-##     filter
-## 
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union</code></pre>
 <p>Sum up the total steps taken each day:</p>
 <pre class="r"><code>splits &lt;- group_by(data, interval)
 daily &lt;- summarize(splits, total_steps=sum(steps, na.rm=TRUE))

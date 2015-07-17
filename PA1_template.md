@@ -14,19 +14,6 @@ data$date <- as.Date(data$date)
 library(dplyr)
 ```
 
-```
-## 
-## Attaching package: 'dplyr'
-## 
-## The following object is masked from 'package:stats':
-## 
-##     filter
-## 
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-```
-
 Sum up the total steps taken each day:
 
 ```r
@@ -38,7 +25,7 @@ hist(daily$total_steps,
      ylab="# of days")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-3-1.png) 
+![](PA1_template_files/figure-html/unnamed-chunk-2-1.png) 
 
 ```r
 mean(daily$total_steps)
@@ -69,7 +56,7 @@ plot(interval$interval,
      ylab="Average steps")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-4-1.png) 
+![](PA1_template_files/figure-html/unnamed-chunk-3-1.png) 
 
 Interval with the highest average number of steps:
 
@@ -116,7 +103,7 @@ hist(imputed_daily$total_steps,
      ylab="# of days")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-9-1.png) 
+![](PA1_template_files/figure-html/unnamed-chunk-8-1.png) 
 
 ```r
 mean(imputed_daily$total_steps)
@@ -170,4 +157,4 @@ ggplot(interval.weekday, aes(x=interval, y=average_steps)) +
   theme_bw()
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-13-1.png) 
+![](PA1_template_files/figure-html/unnamed-chunk-12-1.png) 
