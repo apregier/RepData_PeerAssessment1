@@ -47,7 +47,7 @@ median(daily$total_steps)
 
 ```r
 splits <- group_by(data, interval)
-interval <- summarize(splits, average_steps=sum(steps, na.rm=TRUE))
+interval <- summarize(splits, average_steps=mean(steps, na.rm=TRUE))
 plot(interval$interval,
      interval$average_steps,
      type='l',
